@@ -1,0 +1,86 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#0EA5E9'}}}%%
+
+flowchart TB
+    subgraph App["📱 JUFA Mobile App (Flutter)"]
+        Main["main.dart"]
+        
+        subgraph Core["🔧 Core"]
+            Network["Network Layer<br/>(Dio, Interceptors)"]
+            Storage["Local Storage<br/>(Hive, SecureStorage)"]
+            Constants["Constants"]
+            Utils["Utils & Helpers"]
+            Errors["Error Handling"]
+        end
+
+        subgraph Features["⭐ Features (Clean Architecture)"]
+            subgraph AuthFeature["🔐 Auth"]
+                AuthData["data/"]
+                AuthDomain["domain/"]
+                AuthPresentation["presentation/"]
+            end
+
+            subgraph WalletFeature["💰 Wallet"]
+                WalletData["data/"]
+                WalletDomain["domain/"]
+                WalletPresentation["presentation/"]
+            end
+
+            subgraph TxnFeature["💸 Transactions"]
+                TxnData["data/"]
+                TxnDomain["domain/"]
+                TxnPresentation["presentation/"]
+            end
+
+            subgraph KYCFeature["📋 KYC"]
+                KYCData["data/"]
+                KYCDomain["domain/"]
+                KYCPresentation["presentation/"]
+            end
+
+            subgraph AgentFeature["👤 Agent"]
+                AgentData["data/"]
+                AgentDomain["domain/"]
+                AgentPresentation["presentation/"]
+            end
+
+            subgraph MarketFeature["🛒 Marketplace"]
+                MarketData["data/"]
+                MarketDomain["domain/"]
+                MarketPresentation["presentation/"]
+            end
+
+            subgraph ProfileFeature["⚙️ Profile"]
+                ProfileData["data/"]
+                ProfileDomain["domain/"]
+                ProfilePresentation["presentation/"]
+            end
+        end
+
+        subgraph Shared["📦 Shared"]
+            Widgets["Common Widgets"]
+            Providers["Global Providers"]
+            Theme["Theme & Styles"]
+            Extensions["Extensions"]
+        end
+
+        subgraph Router["🧭 Navigation"]
+            GoRouter["GoRouter"]
+            Guards["Auth Guards"]
+        end
+    end
+
+    Main --> Core
+    Main --> Router
+    Router --> Features
+    Features --> Core
+    Features --> Shared
+
+    subgraph CleanArch["Clean Architecture Pattern"]
+        direction LR
+        DataLayer["📊 Data Layer<br/>• Models (DTOs)<br/>• Datasources<br/>• Repository Impl"]
+        DomainLayer["🎯 Domain Layer<br/>• Entities<br/>• Repository Interfaces<br/>• Use Cases"]
+        PresentationLayer["🖥️ Presentation Layer<br/>• Screens<br/>• Widgets<br/>• Providers/Blocs"]
+        
+        DataLayer --> DomainLayer
+        DomainLayer --> PresentationLayer
+    end

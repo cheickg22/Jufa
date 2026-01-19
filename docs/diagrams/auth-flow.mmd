@@ -1,0 +1,72 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#4F46E5'}}}%%
+
+sequenceDiagram
+    autonumber
+    participant Client as 📱 App Mobile
+    participant Gateway as 🔐 API Gateway
+    participant Auth as Auth Service
+    participant User as User Service
+    participant Wallet as Wallet Service
+    participant Notif as Notification Service
+    participant Redis as Redis
+    participant DB as PostgreSQL
+
+    Note over Client, DB: 🔵 INSCRIPTION
+
+    Client->>Gateway: POST /auth/register<br/>{phone, password}
+    Gateway->>Auth: Forward request
+    Auth->>DB: Check phone exists
+    DB-->>Auth: Not found
+    Auth->>DB: Create user (status: PENDING)
+    Auth->>Auth: Generate OTP (6 digits)
+    Auth->>Redis: Store OTP (TTL: 5min)
+    Auth->>Notif: Send OTP SMS
+    Notif-->>Client: SMS avec OTP
+    Auth-->>Client: {message: "OTP sent", userId}
+
+    Client->>Gateway: POST /auth/verify-otp<br/>{userId, otp}
+    Gateway->>Auth: Forward request
+    Auth->>Redis: Validate OTP
+    Redis-->>Auth: OTP valid
+    Auth->>DB: Update user (status: ACTIVE)
+    Auth->>Wallet: Create default wallet
+    Wallet->>DB: Insert wallet
+    Wallet-->>Auth: Wallet created
+    Auth->>Auth: Generate JWT tokens
+    Auth->>Redis: Store refresh token
+    Auth-->>Client: {accessToken, refreshToken, user}
+
+    Note over Client, DB: 🔵 CONNEXION
+
+    Client->>Gateway: POST /auth/login<br/>{phone, password}
+    Gateway->>Auth: Forward request
+    Auth->>DB: Find user by phone
+    DB-->>Auth: User found
+    Auth->>Auth: Verify password (bcrypt)
+    Auth->>Auth: Generate JWT tokens
+    Auth->>Redis: Store refresh token
+    Auth->>DB: Log login (audit)
+    Auth-->>Client: {accessToken, refreshToken, user}
+
+    Note over Client, DB: 🔵 REFRESH TOKEN
+
+    Client->>Gateway: POST /auth/refresh-token<br/>{refreshToken}
+    Gateway->>Auth: Forward request
+    Auth->>Redis: Validate refresh token
+    Redis-->>Auth: Token valid
+    Auth->>Auth: Generate new access token
+    Auth-->>Client: {accessToken}
+
+    Note over Client, DB: 🔵 TRANSACTION AVEC PIN
+
+    Client->>Gateway: POST /transactions/transfer<br/>+ Authorization: Bearer {JWT}
+    Gateway->>Gateway: Validate JWT
+    Gateway->>Auth: POST /auth/verify-pin<br/>{pin}
+    Auth->>DB: Get user PIN hash
+    Auth->>Auth: Verify PIN (PBKDF2)
+    Auth->>Redis: Store temp token (TTL: 5min)
+    Auth-->>Gateway: {tempToken}
+    Gateway->>Wallet: Process transfer<br/>+ tempToken
+    Wallet->>Redis: Validate temp token
+    Wallet->>DB: Execute transfer
+    Wallet-->>Client: {transaction}

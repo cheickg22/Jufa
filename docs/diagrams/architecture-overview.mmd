@@ -1,0 +1,96 @@
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#4F46E5', 'primaryTextColor': '#fff', 'primaryBorderColor': '#4338CA', 'lineColor': '#6366F1', 'secondaryColor': '#F3F4F6', 'tertiaryColor': '#E0E7FF'}}}%%
+
+flowchart TB
+    subgraph Clients["📱 Clients"]
+        MobileApp["App Mobile JUFA<br/>(Flutter)"]
+        WebAdmin["Back-office Web<br/>(React)"]
+        Partners["APIs Partenaires"]
+    end
+
+    subgraph Gateway["🔐 API Gateway"]
+        Kong["Kong / Spring Cloud Gateway"]
+        Auth["Authentication"]
+        RateLimit["Rate Limiting"]
+    end
+
+    subgraph Services["⚙️ Microservices"]
+        AuthSvc["Auth Service"]
+        UserSvc["User Service"]
+        KYCSvc["KYC Service"]
+        WalletSvc["Wallet Service"]
+        TxnSvc["Transaction Service"]
+        BankSvc["Bank Integration"]
+        MoMoSvc["Mobile Money"]
+        AgentSvc["Agent Service"]
+        MarketSvc["Marketplace"]
+        NotifSvc["Notification Service"]
+        AdminSvc["Admin Service"]
+        ReportSvc["Reporting Service"]
+    end
+
+    subgraph DataLayer["💾 Data Layer"]
+        PG[(PostgreSQL)]
+        Redis[(Redis Cache)]
+        RabbitMQ[[RabbitMQ]]
+        S3[(S3 / MinIO<br/>Files)]
+    end
+
+    subgraph External["🌐 Intégrations Externes"]
+        Ecobank["Ecobank API"]
+        OrangeMoney["Orange Money"]
+        MoovMoney["Moov Money"]
+        SMS["SMS Gateway"]
+        FCM["Firebase FCM"]
+    end
+
+    subgraph Monitoring["📊 Monitoring"]
+        Prometheus["Prometheus"]
+        Grafana["Grafana"]
+        ELK["ELK Stack"]
+        Jaeger["Jaeger Tracing"]
+    end
+
+    MobileApp --> Kong
+    WebAdmin --> Kong
+    Partners --> Kong
+
+    Kong --> Auth
+    Kong --> RateLimit
+    
+    Kong --> AuthSvc
+    Kong --> UserSvc
+    Kong --> KYCSvc
+    Kong --> WalletSvc
+    Kong --> TxnSvc
+    Kong --> AgentSvc
+    Kong --> MarketSvc
+    Kong --> AdminSvc
+
+    AuthSvc --> PG
+    AuthSvc --> Redis
+    UserSvc --> PG
+    KYCSvc --> PG
+    KYCSvc --> S3
+    WalletSvc --> PG
+    WalletSvc --> Redis
+    TxnSvc --> PG
+    TxnSvc --> RabbitMQ
+    AgentSvc --> PG
+    MarketSvc --> PG
+    AdminSvc --> PG
+    ReportSvc --> PG
+
+    TxnSvc --> BankSvc
+    TxnSvc --> MoMoSvc
+    BankSvc --> Ecobank
+    MoMoSvc --> OrangeMoney
+    MoMoSvc --> MoovMoney
+
+    NotifSvc --> SMS
+    NotifSvc --> FCM
+    NotifSvc --> RabbitMQ
+
+    Services --> Prometheus
+    Prometheus --> Grafana
+    Services --> ELK
+    Services --> Jaeger
