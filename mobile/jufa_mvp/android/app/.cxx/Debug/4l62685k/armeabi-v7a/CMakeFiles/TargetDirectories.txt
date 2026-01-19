@@ -1,0 +1,2 @@
+/Users/cheickabdoulkadira.kounta/StudioProjects/jufa_mvp/android/app/.cxx/Debug/4l62685k/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/cheickabdoulkadira.kounta/StudioProjects/jufa_mvp/android/app/.cxx/Debug/4l62685k/armeabi-v7a/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "817732030407",
+    "project_id": "jufa-c404f",
+    "storage_bucket": "jufa-c404f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817732030407:android:70d81841e1a10eb56153e2",
+        "android_client_info": {
+          "package_name": "ml.jufa.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhGt0D7sQgMnyfK3J-s7H4Whp8IbNxsgM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

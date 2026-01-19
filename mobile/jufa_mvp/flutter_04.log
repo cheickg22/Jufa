@@ -1,0 +1,104 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run -d chrome
+
+## exception
+
+FileSystemException: FileSystemException: Cannot open file, path = '/Users/geilanyabdatykounta/Desktop/jufa_mvp/.dart_tool/chrome-device/Default/preferences' (OS Error: Operation timed out, errno = 60)
+
+```
+#0      _File.throwIfError (dart:io/file_impl.dart:783:7)
+#1      _File.openSync (dart:io/file_impl.dart:576:5)
+#2      _File.writeAsBytesSync (dart:io/file_impl.dart:748:31)
+#3      _File.writeAsStringSync (dart:io/file_impl.dart:776:5)
+#4      ForwardingFile.writeAsStringSync (package:file/src/forwarding/forwarding_file.dart:150:16)
+#5      ErrorHandlingFile.writeAsStringSync.<anonymous closure> (package:flutter_tools/src/base/error_handling_io.dart:254:22)
+#6      _runSync (package:flutter_tools/src/base/error_handling_io.dart:552:14)
+#7      ErrorHandlingFile.writeAsStringSync (package:flutter_tools/src/base/error_handling_io.dart:253:5)
+#8      ChromiumLauncher._cacheUserSessionInformation (package:flutter_tools/src/web/chrome.dart:408:29)
+#9      ChromiumLauncher.launch.<anonymous closure> (package:flutter_tools/src/web/chrome.dart:241:11)
+#10     _rootRun (dart:async/zone.dart:1517:47)
+#11     _CustomZone.run (dart:async/zone.dart:1422:19)
+#12     _FutureListener.handleWhenComplete (dart:async/future_impl.dart:272:18)
+#13     Future._propagateToListeners.handleWhenCompleteCallback (dart:async/future_impl.dart:909:39)
+#14     Future._propagateToListeners (dart:async/future_impl.dart:974:11)
+#15     Future._propagateToListeners (dart:async/future_impl.dart:862:9)
+#16     Future._completeWithValue (dart:async/future_impl.dart:720:5)
+#17     Future._asyncCompleteWithValue.<anonymous closure> (dart:async/future_impl.dart:804:7)
+#18     _rootRun (dart:async/zone.dart:1525:13)
+#19     _CustomZone.run (dart:async/zone.dart:1422:19)
+#20     _CustomZone.runGuarded (dart:async/zone.dart:1321:7)
+#21     _CustomZone.bindCallbackGuarded.<anonymous closure> (dart:async/zone.dart:1362:23)
+#22     _microtaskLoop (dart:async/schedule_microtask.dart:40:35)
+#23     _startMicrotaskLoop (dart:async/schedule_microtask.dart:49:5)
+#24     _runPendingImmediateCallback (dart:isolate-patch/isolate_patch.dart:127:13)
+#25     _RawReceivePort._handleMessage (dart:isolate-patch/isolate_patch.dart:194:5)
+```
+
+## flutter doctor
+
+```
+[32m[✓][39m Flutter (Channel stable, 3.35.6, on macOS 26.1 25B78 darwin-arm64, locale fr-FR) [152ms]
+    [32m•[39m Flutter version 3.35.6 on channel stable at /opt/homebrew/share/flutter
+    [32m•[39m Upstream repository https://github.com/flutter/flutter.git
+    [32m•[39m Framework revision 9f455d2486 (2 months ago), 2025-10-08 14:55:31 -0500
+    [32m•[39m Engine revision d2913632a4
+    [32m•[39m Dart version 3.9.2
+    [32m•[39m DevTools version 2.48.0
+    [32m•[39m Feature flags: enable-web, enable-linux-desktop, enable-macos-desktop,
+      enable-windows-desktop, enable-android, enable-ios, cli-animations, enable-lldb-debugging
+
+[32m[✓][39m Android toolchain - develop for Android devices (Android SDK version 35.0.0-rc3) [2,2s]
+    [32m•[39m Android SDK at /Users/geilanyabdatykounta/Library/Android/sdk
+    [32m•[39m Emulator version 34.2.15.0 (build_id 11906825) (CL:N/A)
+    [32m•[39m Platform android-36, build-tools 35.0.0-rc3
+    [32m•[39m ANDROID_HOME = /Users/geilanyabdatykounta/Library/Android/sdk
+    [32m•[39m Java binary at:
+      /opt/homebrew/Cellar/openjdk@17/17.0.15/libexec/openjdk.jdk/Contents/Home/bin/java
+      This JDK is specified by the JAVA_HOME environment variable.
+      To manually set the JDK path, use: `flutter config --jdk-dir="path/to/jdk"`.
+    [32m•[39m Java version OpenJDK Runtime Environment Homebrew (build 17.0.15+0)
+    [32m•[39m All Android licenses accepted.
+
+[33m[!][39m Xcode - develop for iOS and macOS [1 427ms]
+    [31m✗[39m Xcode installation is incomplete; a full installation is necessary for iOS and macOS
+      development.
+      Download at: https://developer.apple.com/xcode/
+      Or install Xcode via the App Store.
+      Once installed, run:
+        sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+        sudo xcodebuild -runFirstLaunch
+    [33m![39m CocoaPods 1.15.2 out of date (1.16.2 is recommended).
+        CocoaPods is a package manager for iOS or macOS platform code.
+        Without CocoaPods, plugins will not work on iOS or macOS.
+        For more info, see https://flutter.dev/to/platform-plugins
+      To update CocoaPods, see
+      https://guides.cocoapods.org/using/getting-started.html#updating-cocoapods
+
+[32m[✓][39m Chrome - develop for the web [41ms]
+    [32m•[39m Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+
+[33m[!][39m Android Studio (not installed) [41ms]
+    [32m•[39m Android Studio not found; download from https://developer.android.com/studio/index.html
+      (or visit https://flutter.dev/to/macos-android-setup for detailed instructions).
+
+[32m[✓][39m Connected device (2 available) [155ms]
+    [32m•[39m macOS (desktop) • macos  • darwin-arm64   • macOS 26.1 25B78 darwin-arm64
+    [32m•[39m Chrome (web)    • chrome • web-javascript • Google Chrome 143.0.7499.169
+
+[33m[!][39m Network resources [51ms]
+    [31m✗[39m A network error occurred while checking "https://pub.dev/": Failed host lookup: 'pub.dev'
+    [31m✗[39m A network error occurred while checking "https://storage.googleapis.com/": Failed host
+      lookup: 'storage.googleapis.com'
+    [31m✗[39m A network error occurred while checking "https://maven.google.com/": Failed host lookup:
+      'maven.google.com'
+    [31m✗[39m A network error occurred while checking "https://cocoapods.org/": Failed host lookup:
+      'cocoapods.org'
+    [31m✗[39m A network error occurred while checking "https://github.com/": Failed host lookup:
+      'github.com'
+
+[33m![39m Doctor found issues in 3 categories.
+```

@@ -1,0 +1,1 @@
+ /Users/geilanyabdatykounta/Desktop/jufa_agent/.dart_tool/flutter_build/773a2888a506e8604a20e190c14a4869/native_assets.json: 

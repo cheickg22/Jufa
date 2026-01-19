@@ -1,0 +1,95 @@
+Flutter crash report.
+Please report a bug at https://github.com/flutter/flutter/issues.
+
+## command
+
+flutter run -d chrome
+
+## exception
+
+PathNotFoundException: PathNotFoundException: Cannot retrieve modification time, path = '/Users/geilanyabdatykounta/Desktop/jufa_agent/.dart_tool/package_config.json' (OS Error: No such file or directory, errno = 2)
+
+```
+#0      _File.throwIfError (dart:io/file_impl.dart:783:7)
+#1      _File.lastModifiedSync (dart:io/file_impl.dart:531:5)
+#2      ForwardingFile.lastModifiedSync (package:file/src/forwarding/forwarding_file.dart:57:43)
+#3      ForwardingFile.lastModifiedSync (package:file/src/forwarding/forwarding_file.dart:57:43)
+#4      _DefaultPub.get (package:flutter_tools/src/dart/pub.dart:320:69)
+#5      FlutterCommand.verifyThenRunCommand (package:flutter_tools/src/runner/flutter_command.dart:1884:17)
+<asynchronous suspension>
+#6      FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1581:27)
+<asynchronous suspension>
+#7      AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#8      CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+<asynchronous suspension>
+#9      FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:503:9)
+<asynchronous suspension>
+#10     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#11     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:438:5)
+<asynchronous suspension>
+#12     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:98:11)
+<asynchronous suspension>
+#13     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#14     main (package:flutter_tools/executable.dart:101:3)
+<asynchronous suspension>
+```
+
+## flutter doctor
+
+```
+[32m[✓][39m Flutter (Channel stable, 3.35.6, on macOS 26.1 25B78 darwin-arm64, locale fr-FR) [886ms]
+    [32m•[39m Flutter version 3.35.6 on channel stable at /opt/homebrew/share/flutter
+    [32m•[39m Upstream repository https://github.com/flutter/flutter.git
+    [32m•[39m Framework revision 9f455d2486 (3 months ago), 2025-10-08 14:55:31 -0500
+    [32m•[39m Engine revision d2913632a4
+    [32m•[39m Dart version 3.9.2
+    [32m•[39m DevTools version 2.48.0
+    [32m•[39m Feature flags: enable-web, enable-linux-desktop, enable-macos-desktop,
+      enable-windows-desktop, enable-android, enable-ios, cli-animations, enable-lldb-debugging
+
+[32m[✓][39m Android toolchain - develop for Android devices (Android SDK version 35.0.0-rc3) [3,4s]
+    [32m•[39m Android SDK at /Users/geilanyabdatykounta/Library/Android/sdk
+    [32m•[39m Emulator version 34.2.15.0 (build_id 11906825) (CL:N/A)
+    [32m•[39m Platform android-36, build-tools 35.0.0-rc3
+    [32m•[39m ANDROID_HOME = /Users/geilanyabdatykounta/Library/Android/sdk
+    [32m•[39m Java binary at:
+      /opt/homebrew/Cellar/openjdk@17/17.0.15/libexec/openjdk.jdk/Contents/Home/bin/java
+      This JDK is specified by the JAVA_HOME environment variable.
+      To manually set the JDK path, use: `flutter config --jdk-dir="path/to/jdk"`.
+    [32m•[39m Java version OpenJDK Runtime Environment Homebrew (build 17.0.15+0)
+    [32m•[39m All Android licenses accepted.
+
+[33m[!][39m Xcode - develop for iOS and macOS [2,1s]
+    [31m✗[39m Xcode installation is incomplete; a full installation is necessary for iOS and macOS
+      development.
+      Download at: https://developer.apple.com/xcode/
+      Or install Xcode via the App Store.
+      Once installed, run:
+        sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+        sudo xcodebuild -runFirstLaunch
+    [33m![39m CocoaPods 1.15.2 out of date (1.16.2 is recommended).
+        CocoaPods is a package manager for iOS or macOS platform code.
+        Without CocoaPods, plugins will not work on iOS or macOS.
+        For more info, see https://flutter.dev/to/platform-plugins
+      To update CocoaPods, see
+      https://guides.cocoapods.org/using/getting-started.html#updating-cocoapods
+
+[32m[✓][39m Chrome - develop for the web [53ms]
+    [32m•[39m Chrome at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+
+[33m[!][39m Android Studio (not installed) [52ms]
+    [32m•[39m Android Studio not found; download from https://developer.android.com/studio/index.html
+      (or visit https://flutter.dev/to/macos-android-setup for detailed instructions).
+
+[32m[✓][39m Connected device (2 available) [789ms]
+    [32m•[39m macOS (desktop) • macos  • darwin-arm64   • macOS 26.1 25B78 darwin-arm64
+    [32m•[39m Chrome (web)    • chrome • web-javascript • Google Chrome 143.0.7499.170
+
+[32m[✓][39m Network resources [1 426ms]
+    [32m•[39m All expected network resources are available.
+
+[33m![39m Doctor found issues in 2 categories.
+```

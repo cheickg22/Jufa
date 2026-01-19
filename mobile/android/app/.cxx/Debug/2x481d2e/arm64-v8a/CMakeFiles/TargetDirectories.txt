@@ -1,0 +1,2 @@
+/Users/cheickabdoulkadira.kounta/StudioProjects/PEL2026/JUFA/mobile/android/app/.cxx/Debug/2x481d2e/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/cheickabdoulkadira.kounta/StudioProjects/PEL2026/JUFA/mobile/android/app/.cxx/Debug/2x481d2e/arm64-v8a/CMakeFiles/rebuild_cache.dir
