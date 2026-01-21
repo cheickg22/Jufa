@@ -1,0 +1,46 @@
+# Mac
+.DS_Store
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Flutter
+**/build/
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/pubspec.lock
+**/*.iml
+**/*.log
+
+# Android
+**/android/.gradle/
+**/android/local.properties
+**/android/key.properties
+**/*.jks
+**/*.keystore
+
+# iOS
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/ServiceDefinitions.json
+
+# Java/Maven
+**/target/
+**/*.class
+**/*.jar
+**/*.war
+
+# Firebase
+**/google-services.json
+**/GoogleService-Info.plist
+**/firebase-service-account.json
+
+# Secrets
+*.env
+*.env.local
